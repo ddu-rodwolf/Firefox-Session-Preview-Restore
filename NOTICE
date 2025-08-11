@@ -1,0 +1,15 @@
+Firefox Session Preview & Restore
+Copyright 2025 [Your Name or Handle]
+
+This project provides tools to preview, restore, and back up Firefox sessions, 
+including a Python utility for decoding LZ4-compressed session files and 
+shell/JQ scripts for browsing and filtering session data.
+
+Portions of design, structure, and documentation prepared with the assistance 
+of OpenAI’s ChatGPT conversational AI.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not 
+use this file except in compliance with the License. You may obtain a copy of 
+the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
