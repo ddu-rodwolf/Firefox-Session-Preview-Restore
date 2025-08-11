@@ -35,7 +35,7 @@ Planned adaptation for **Microsoft Edge** is also considered, for environments w
 
 ## 📦 Current Release Status
 
-> **Note:** Full Bash/JQ preview & restore scripts are **under development**.  
+> **Note:** Full Bash/JQ preview & restore scripts are **under refinement**.  
 > The **Python decoder** is published now for early adopters and integration testing.
 
 ### `decode_jsonlz4.py`
