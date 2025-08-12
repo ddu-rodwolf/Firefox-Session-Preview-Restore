@@ -81,7 +81,7 @@ firefox-session-tools/
 └── NOTICE                          # Attribution & legal notices
 ```
 
-### Interactions & Dependencies ###
+### 🎳 Interactions & Dependencies
 
 - **`backup_firefox_sessions.sh`**  
   - Scans Firefox profile folders (user's environment) and copies sessionstore backups into timestamped backup directories under your chosen `BACKUP_ROOT`.  
@@ -94,7 +94,7 @@ firefox-session-tools/
 
 - **`restore_firefox_session.sh`**  
   - Lets you choose a backup to restore to a given profile’s `sessionstore-backups/`.  
-  - Optionally previews before writing, using `preview_firefox_session.sh`.
+  - Optionally previews before restoring via `preview_firefox_session.sh`.
 
 - **`decode_jsonlz4.py`**  
   - Standalone decompressor for Firefox's `.jsonlz4` (LZ4) format.  
@@ -104,6 +104,15 @@ firefox-session-tools/
   - Formats raw session JSON into a more human-readable, grouped form (grouped by window, annotated tab titles, and URLs).  
   - Intended for terminal color output.
 
+### ⚙️ What the Scripts Do
+
+- **`backup_firefox_sessions.sh`** – Finds and copies Firefox's sessionstore backups, naming them with profile + timestamp.  
+- **`restore_firefox_session.sh`** – Restores a backup into the active profile folder.  
+- **`preview_firefox_session.sh`** – Lets you inspect the tabs/windows in a session without restoring it.  
+- **`decode_jsonlz4.py`** – Handles decompression of `.jsonlz4` into JSON.  
+- **`jq_preview_with_groups.jq`** – Prettifies JSON into grouped, colorized tab lists.
+
+---
 </details>
 
 ---
@@ -114,6 +123,7 @@ firefox-session-tools/
 &nbsp;
   
 ```text
+        backup → preview → restore
           ┌─────────────────────┐
           │ backup_firefox_*.sh │
           └──────────┬──────────┘
@@ -157,16 +167,6 @@ firefox-session-tools/
 
 ---
 
-## 🛠️ What the Scripts Do
-
-- **`backup_firefox_sessions.sh`** – Finds and copies Firefox's sessionstore backups, naming them with profile + timestamp.  
-- **`restore_firefox_session.sh`** – Restores a backup into the active profile folder.  
-- **`preview_firefox_session.sh`** – Lets you inspect the tabs/windows in a session without restoring it.  
-- **`decode_jsonlz4.py`** – Handles decompression of `.jsonlz4` into JSON.  
-- **`jq_preview_with_groups.jq`** – Prettifies JSON into grouped, colorized tab lists.
-
----
-
 ## 🤝 Contributions
 
 Contributions are welcome once the initial core scripts are stable.  
@@ -184,8 +184,8 @@ This project benefited from development support, testing strategies, and workflo
 ---
 ## 📜 License & Attribution
 
-This project is licensed under the **Apache License 2.0** — see the `LICENSE` file for details.  
-The `NOTICE` file contains attribution and other legal information.  
+This project is licensed under the **Apache License 2.0** — see the [LICENSE](LICENSE) file for details.   
+The [NOTICE](NOTICE) file contains attribution and other legal information.  
 When redistributing, please keep both files intact.
 
 ---
