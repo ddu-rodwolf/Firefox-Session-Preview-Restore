@@ -60,6 +60,10 @@ python3 decode_jsonlz4.py path/to/session.jsonlz4 | jq -rf jq_preview_with_group
 </details>
 
 ---
+## 📝 Requirements
+
+- **jq** — JSON processor for preview scripts
+- **Python3** — with `lz4` module
 
 ## 📁 Project Structure
 <details>
