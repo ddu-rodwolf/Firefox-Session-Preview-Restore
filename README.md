@@ -45,7 +45,7 @@ Tested mainly on Linux; macOS should work with minor tweaks; Windows via WSL.
 
 **Released - ready for early use.**
 - `decode_jsonlz4.py` — Python utility to decompress Firefox `mozLz40\0` LZ4 session files to JSON.
-- `jq_preview_with_groups.jq ` — JQ filter to ... .  
+- `jq_preview_with_groups.jq ` — JQ filter to format and group session data by window and tab for easy terminal preview or Markdown export.  
 
 **Usage:**
 ```bash
@@ -112,7 +112,6 @@ firefox-session-tools/
 - **`decode_jsonlz4.py`** – Handles decompression of `.jsonlz4` into JSON.  
 - **`jq_preview_with_groups.jq`** – Prettifies JSON into grouped, colorized tab lists.
 
----
 </details>
 
 ---
@@ -121,31 +120,37 @@ firefox-session-tools/
 <details>
 <summary>Click to expand workflow: diagram & typical usage pattern/</summary>
 &nbsp;
-  
+
 ```text
-        backup → preview → restore
-          ┌─────────────────────┐
-          │ backup_firefox_*.sh │
-          └──────────┬──────────┘
-                     │ produces backups
-                     ▼
-             ┌──────────────┐
-             │ preview_*.sh │
-             └───────┬──────┘
-                     │ calls
-                     ▼
-           ┌───────────────────┐
-           │ decode_jsonlz4.py │
-           └─────────┬─────────┘
-                     │ pipes JSON
-                     ▼
-       ┌───────────────────────────┐
-       │ jq_preview_with_groups.jq │
-       └─────────────┬─────────────┘
-                     │
-                     ▼
-           Human-readable session
+    backup → preview → restore
+
+          backup (optional preview)                      restore (optional preview)
+          ┌─────────────────────┐                        ┌───────────────────────┐
+          │ backup_firefox_*.sh │                        │ restore_firefox_*.sh  │
+          └──────────┬──────────┘                        └────────────┬──────────┘
+                     │ produces backups          restore from backups │ 
+                     |                                                │
+                     └────────────────── *optional* ──────────────────┘
+                                             |
+                                             ▼
+                                      ┌──────────────┐ 
+                                      │ preview_*.sh │
+                                      └──────┬───────┘
+                                             │ calls
+                                             ▼
+                                   ┌───────────────────┐
+                                   │ decode_jsonlz4.py │
+                                   └─────────┬─────────┘
+                                             │ pipes JSON
+                                             ▼
+                                ┌───────────────────────────┐
+                                │ jq_preview_with_groups.jq │
+                                └────────────┬──────────────┘
+                                             │
+                                             ▼
+                                    Human-readable session
 ```
+  
 
 ### Typical Usage Pattern ###
 
@@ -154,12 +159,30 @@ firefox-session-tools/
    ./backup_firefox_sessions.sh [--dry-run]
    ```
 
-2. **Preview** a backup before restoring:  
-   ```bash
-   ./preview_firefox_session.sh path/to/session.jsonlz4
-   ```
+2. **Preview** a backup before restoring - Full Command Reference:
+   
+    Usage: 
+    ```bash
+   ./preview_firefox_session.sh [options] [path/to/session.jsonlz4]
+    ```
+    Modes:
 
-3. **Restore** a chosen backup:  
+
+    | Option                         | Description                                               |
+    |--------------------------------|-----------------------------------------------------------|
+    | (no path)                      | Interactive browsing (profile → date → session file)      |
+    | `--markdown`                   | Same interactive browsing, but export preview as Markdown |
+    | ` <path/to/file>`              | Non-interactive: preview that specific .jsonlz4 file      |
+    | `--markdown` ` <path/to/file>` | Non-interactive + Markdown export                         |
+
+    Color utilities:  
+    `--color` Preview all 256 terminal colors  
+    `--color-used` Preview only the colors used by the script
+
+    General:  
+    `--help` Show this help and exit
+
+4. **Restore** a chosen backup:  
    ```bash
    ./restore_firefox_session.sh [--dry-run]
    ```
