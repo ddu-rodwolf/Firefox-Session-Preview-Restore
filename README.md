@@ -45,11 +45,11 @@ Tested mainly on Linux; macOS should work with minor tweaks; Windows via WSL.
 
 **Released - ready for early use.**
 - `decode_jsonlz4.py` — Python utility to decompress Firefox `mozLz40\0` LZ4 session files to JSON.
-- `jq_preview_with_groups.jq ` — JQ filter to format and group session data by window and tab for easy terminal preview or Markdown export.  
+- `jq_preview_with_groups.jq` — JQ filter to format and group session data by window and tab for easy terminal preview or Markdown export.  
 
 **Usage:**
 ```bash
-python3 decode_jsonlz4.py  path/to/session.jsonlz4 | jq -rf jq_preview_with_groups.jq
+python3 decode_jsonlz4.py path/to/session.jsonlz4 | jq -rf jq_preview_with_groups.jq
 ```
 
 **In-progress**
